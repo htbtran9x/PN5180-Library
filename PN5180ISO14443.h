@@ -21,28 +21,29 @@
 
 #include "PN5180.h"
 
-
-class PN5180ISO14443 : public PN5180 {
+class PN5180ISO14443 : public PN5180
+{
 
 public:
-  PN5180ISO14443(uint8_t SSpin, uint8_t BUSYpin, uint8_t RSTpin, SPIClass& spi=SPI);
-  
+  PN5180ISO14443(uint8_t SSpin, uint8_t BUSYpin, uint8_t RSTpin, SPIClass &spi = SPI);
+
 private:
   uint16_t rxBytesReceived();
   uint32_t GetNumberOfBytesReceivedAndValidBits();
+
 public:
   // Mifare TypeA
   int8_t activateTypeA(uint8_t *buffer, uint8_t kind);
-  bool mifareBlockRead(uint8_t blockno,uint8_t *buffer);
+  bool mifareBlockRead(uint8_t blockno, uint8_t *buffer);
   uint8_t mifareBlockWrite16(uint8_t blockno, uint8_t *buffer);
   bool mifareHalt();
   /*
    * Helper functions
    */
-public:   
+public:
   bool setupRF();
-  int8_t readCardSerial(uint8_t *buffer);    
-  bool isCardPresent();    
+  uint8_t readCardSerial(uint8_t *buffer);
+  bool isCardPresent();
 };
 
 #endif /* PN5180ISO14443_H */
